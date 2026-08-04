@@ -26,7 +26,7 @@ public class ProjectApplication {
     String user = env("DB_USER", "mysql".equals(dbType) ? "student_factory" : "postgres");
     String password = env("DB_PASSWORD", "mysql".equals(dbType) ? "mysql" : "postgres");
     String url = "mysql".equals(dbType)
-      ? "jdbc:mysql://" + host + ":" + port + "/" + name + "?allowPublicKeyRetrieval=true&useSSL=false"
+      ? "jdbc:mysql://" + host + ":" + port + "/" + name + "?allowPublicKeyRetrieval=true&useSSL=true&requireSSL=true"
       : "jdbc:postgresql://" + host + ":" + port + "/" + name;
 
     System.setProperty("spring.datasource.url", url);
