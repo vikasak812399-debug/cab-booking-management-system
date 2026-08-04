@@ -2,12 +2,20 @@ package com.studentfactory.generated;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ConfigurableApplicationContext;
 
 @SpringBootApplication
 public class ProjectApplication {
   public static void main(String[] args) {
     configureDatabase();
-    SpringApplication.run(ProjectApplication.class, args);
+    ConfigurableApplicationContext context = SpringApplication.run(ProjectApplication.class, args);
+
+    try {
+      context.getBean(com.studentfactory.generated.service.SeedService.class).seed();
+      System.out.println("[seed] completed");
+    } catch (Exception e) {
+      System.out.println("[seed] skipped or failed: " + e.getMessage());
+    }
   }
 
   private static void configureDatabase() {
