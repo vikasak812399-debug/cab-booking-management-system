@@ -20,12 +20,11 @@ export function DashboardPage() {
 
   useEffect(() => {
     void (async () => {
-      const [statsData, modulesData] = await Promise.all([
-        apiRequest<StatsPayload>('/reports/summary'),
-        apiRequest<ModulesPayload>('/dashboard/modules')
-      ]);
-      setStats(statsData);
-      setModules(modulesData.modules);
+      const statsData = await apiRequest<StatsPayload>('/reports/summary');
+setStats(statsData);
+setModules([]);
+      
+      
     })();
   }, []);
 
