@@ -21,7 +21,7 @@ export function DashboardPage() {
   useEffect(() => {
     void (async () => {
       const [statsData, modulesData] = await Promise.all([
-        apiRequest<StatsPayload>('/dashboard/stats'),
+        apiRequest<StatsPayload>('/reports/summary'),
         apiRequest<ModulesPayload>('/dashboard/modules')
       ]);
       setStats(statsData);
